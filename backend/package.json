@@ -4,7 +4,9 @@
   "description": "backend do primeiro projeto do CTD da mentoria Conquiste a sua Vaga",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./src/app.js",
+    "dev": "nodemon ./src/app.js"
   },
   "author": "Mario Frederico de Castilho",
   "license": "ISC",
