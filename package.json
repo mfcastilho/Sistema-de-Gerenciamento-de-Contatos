@@ -1,0 +1,15 @@
+{
+  "name": "sistema-de-gerenciamento-de-contatos",
+  "version": "1.0.0",
+  "description": "Primeiro projeto do CTD da Mentoria Conquiste a sua Vaga",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mfcastilho/Sistema-de-Gerenciamento-de-Contatos/blob/master/README.md"
+  },
+  "author": "Mario Frederico de Castilho",
+  "license": "ISC"
+}
