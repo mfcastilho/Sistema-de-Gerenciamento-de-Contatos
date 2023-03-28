@@ -11,5 +11,8 @@
     "url": "https://github.com/mfcastilho/Sistema-de-Gerenciamento-de-Contatos/blob/master/README.md"
   },
   "author": "Mario Frederico de Castilho",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "uuid": "^9.0.0"
+  }
 }
