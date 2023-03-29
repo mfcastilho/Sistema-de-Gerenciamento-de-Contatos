@@ -38,7 +38,8 @@ const UserController = {
      },
 
      storeUser: async (req, res)=>{
-          const {name, email, password} = req.body;
+          try {
+               const {name, email, password} = req.body;
  
           const hashPassword = bcrypt.hashSync(password, 10);
 
@@ -56,10 +57,83 @@ const UserController = {
           }
 
           return res.status(201).json({data:newUser});
+
+          } catch (error) {
+
+               if (error.name === "SequelizeConnectionRefusedError"){
+                    return res.status(500).json({error: true, message: "Sistema indisponível, tente novamente mais tarde!"})
+                  }
+            
+                  if (error.name === "SequelizeUniqueConstraintError"){
+                      return res.status(400).json(error.parent.sqlMessage);
+                  }
+            
+                  if (error.name === "SequelizeValidationError"){
+                      return res.status(400).json({error: true, message: `${error.errors[0].type} at ${error.errors[0].path}`})
+                  }
+               
+          }
      },
 
-     editUser: (req, res)=>{
+     editUser: async (req, res)=>{
+          try {
+               const {name, email, password} = req.body;
+               const {id} = req.params;
 
+               const user = await User.findByPk(id);
+
+               if(!user){
+                    return res.status(404).json({message: "Usuário não existe"});
+               }
+
+               if(!password){
+
+                    const updateUser = {
+                         name: name == "" ? user.name : name,
+                         email: email == "" ? user.email : email,
+                         password:user.password
+                    }
+                    await User.update({updateUser},{
+                         where:{id}
+                     });
+
+                     const renewedUser = await User.findByPk(id);
+
+                    return res.status(201).json({data:renewedUser});
+               }
+
+               const hashPassword = bcrypt.hashSync(password, 10);
+               const updateUser = {
+                    id,
+                    name: name == undefined ? user.name : name,
+                    email: email == undefined ? user.email : email,
+                    password: hashPassword
+               }
+
+               
+               await User.update(updateUser, 
+                    {where: {id}}
+               );
+               
+
+               const renewedUser = await User.findByPk(id);
+
+               return res.status(201).json({data:renewedUser});
+
+          } catch (error) {
+               
+               if (error.name === "SequelizeConnectionRefusedError"){
+                    return res.status(500).json({error: true, message: "Sistema indisponível, tente novamente mais tarde!"})
+                  }
+            
+                  if (error.name === "SequelizeUniqueConstraintError"){
+                      return res.status(400).json(error.parent.sqlMessage);
+                  }
+            
+                  if (error.name === "SequelizeValidationError"){
+                      return res.status(400).json({error: true, message: `${error.errors[0].type} at ${error.errors[0].path}`})
+                  }
+          }
      },
 
      deleteUser: (req, res)=>{
