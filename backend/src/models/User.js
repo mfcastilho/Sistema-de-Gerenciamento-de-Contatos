@@ -23,5 +23,9 @@ module.exports = (sequelize, DataTypes)=>{
           timestamps: true
      });
 
+     User.associate = (models)=>{
+          User.hasMany(models.Contact)
+     }
+
      return User;
 }
