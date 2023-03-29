@@ -4,6 +4,7 @@ const UserController = require("../controllers/UserController");
 
 
 router.post("/api/v1/gerenciamento-contatos/login", UserController.login);
+router.post("/api/v1/gerenciamento-contatos/logout", UserController.logout);
 router.post("/api/v1/gerenciamento-contatos/cadastro", UserController.storeUser);
 router.get("/api/v1/gerenciamento-contatos/usuario/:id", UserController.getById);
 router.put("/api/v1/gerenciamento-contatos/usuario/:id/editar", UserController.editUser);
