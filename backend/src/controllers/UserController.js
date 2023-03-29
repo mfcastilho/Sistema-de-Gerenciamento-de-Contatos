@@ -216,8 +216,9 @@ const UserController = {
                localStorage.removeItem("user");
 
                return res.json({message: "Usuário deslogado com sucesso"});
-               
+
           } catch (error) {
+               
                if (error.name === "SequelizeConnectionRefusedError"){
                     return res.status(500).json({error: true, message: "Sistema indisponível, tente novamente mais tarde!"})
                }
