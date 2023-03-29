@@ -1,11 +1,52 @@
 const { User } = require("../models");
 const bcrypt = require("bcryptjs");
 const {v4:makeId} = require("uuid");
+const jwt = require("jsonwebtoken");
+
 
 
 const UserController = {
-     login: (req, res)=>{
+     login: async (req, res)=>{
+          try {
+               const {email, password} = req.body;
 
+               const user = await User.findOne({
+                    where:{email:email}
+               });
+
+          
+               if(!user){
+                    return res.status(401).json({message: "Email ou senhas incorretos"});
+               }
+
+               const passwordMatches = bcrypt.compareSync(password, user.password);
+
+
+               if(!passwordMatches){
+                    return res.status(401).json({message: "Email ou senhas incorretos"});
+               }
+
+               const token = jwt.sign({id: user.id}, process.env.JWT_SECRET,{
+                    expiresIn: "1d"
+               });
+               
+               console.log(token)
+
+               return res.json({token, user:{id:user.id, name:user.name, email: user.email}});
+
+          } catch (error) {
+               if (error.name === "SequelizeConnectionRefusedError"){
+                    return res.status(500).json({error: true, message: "Sistema indisponível, tente novamente mais tarde!"})
+               }
+            
+               if (error.name === "SequelizeUniqueConstraintError"){
+                    return res.status(400).json(error.parent.sqlMessage);
+               }
+            
+               if (error.name === "SequelizeValidationError"){
+                    return res.status(400).json({error: true, message: `${error.errors[0].type} at ${error.errors[0].path}`})
+               }
+          }
      },
 
      getById: async (req, res)=>{
@@ -25,15 +66,15 @@ const UserController = {
           } catch (error) {
                if (error.name === "SequelizeConnectionRefusedError"){
                     return res.status(500).json({error: true, message: "Sistema indisponível, tente novamente mais tarde!"})
-                  }
+               }
             
-                  if (error.name === "SequelizeUniqueConstraintError"){
-                      return res.status(400).json(error.parent.sqlMessage);
-                  }
+               if (error.name === "SequelizeUniqueConstraintError"){
+                    return res.status(400).json(error.parent.sqlMessage);
+               }
             
-                  if (error.name === "SequelizeValidationError"){
-                      return res.status(400).json({error: true, message: `${error.errors[0].type} at ${error.errors[0].path}`})
-                  }
+               if (error.name === "SequelizeValidationError"){
+                    return res.status(400).json({error: true, message: `${error.errors[0].type} at ${error.errors[0].path}`})
+               }
           }
      },
 
