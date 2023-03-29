@@ -8,11 +8,13 @@ const UserController = {
 
      },
 
-     getById: (req, res)=>{
+     getById: async (req, res)=>{
           try {
                
                const {id} = req.params;
-               const user = User.findByPk(id);
+               const user = await User.findByPk(id);
+
+               console.log(user)
 
                if(!user){
                     return res.status(404).json({message: "Usuário não encontrado"});
@@ -35,7 +37,7 @@ const UserController = {
           }
      },
 
-     storeUser: (req, res)=>{
+     storeUser: async (req, res)=>{
           const {name, email, password} = req.body;
  
           const hashPassword = bcrypt.hashSync(password, 10);
@@ -47,7 +49,7 @@ const UserController = {
                password: hashPassword
           } 
 
-          const user = User.create(newUser);
+          const user = await User.create(newUser);
 
           if(!user){
                return res.status(404).json({message: "Usuário já se encontra cadastrdo"});
