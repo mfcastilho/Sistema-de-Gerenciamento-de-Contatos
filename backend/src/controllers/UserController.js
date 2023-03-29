@@ -124,20 +124,48 @@ const UserController = {
                
                if (error.name === "SequelizeConnectionRefusedError"){
                     return res.status(500).json({error: true, message: "Sistema indisponível, tente novamente mais tarde!"})
-                  }
+               }
             
-                  if (error.name === "SequelizeUniqueConstraintError"){
-                      return res.status(400).json(error.parent.sqlMessage);
-                  }
+               if (error.name === "SequelizeUniqueConstraintError"){
+                    return res.status(400).json(error.parent.sqlMessage);
+               }
             
-                  if (error.name === "SequelizeValidationError"){
-                      return res.status(400).json({error: true, message: `${error.errors[0].type} at ${error.errors[0].path}`})
-                  }
+               if (error.name === "SequelizeValidationError"){
+                    return res.status(400).json({error: true, message: `${error.errors[0].type} at ${error.errors[0].path}`})
+               }
           }
      },
 
-     deleteUser: (req, res)=>{
+     deleteUser: async (req, res)=>{
+          try {
 
+               const {id} = req.params;
+
+               const user = User.findByPk(id);
+
+               if(!user){
+                    return res.status(404).json({message: "Usuário não existe"});
+               }
+
+               const userId = await User.destroy({
+                    where: {id}
+               });
+
+               return res.status(200).json({message: `usuário de id:${userId} excluído com sucesso`});
+               
+          } catch (error) {
+               if (error.name === "SequelizeConnectionRefusedError"){
+                    return res.status(500).json({error: true, message: "Sistema indisponível, tente novamente mais tarde!"})
+               }
+            
+               if (error.name === "SequelizeUniqueConstraintError"){
+                    return res.status(400).json(error.parent.sqlMessage);
+               }
+            
+               if (error.name === "SequelizeValidationError"){
+                    return res.status(400).json({error: true, message: `${error.errors[0].type} at ${error.errors[0].path}`})
+               }
+          }
      },
 
      logout: (req, res)=>{
