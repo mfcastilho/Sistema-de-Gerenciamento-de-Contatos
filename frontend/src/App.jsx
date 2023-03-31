@@ -1,15 +1,16 @@
-import React from "react"
-import { Header } from "./components/header/Header"
-import { Home } from "./pages/Home"
+import React from "react";
+import { RoutesApp } from "./RoutesApp";
+
+
 
 function App() {
 
   return (
    <div>
-      <Home/>
+      <RoutesApp />
    </div>
 
   )
 }
 
-export default App
+export default App;
