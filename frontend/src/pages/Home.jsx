@@ -7,7 +7,6 @@ import { Login } from "../components/loginForm/Login";
 export function Home(){
      return (
           <div>
-               <Header />
                <Login />
           </div>
      )

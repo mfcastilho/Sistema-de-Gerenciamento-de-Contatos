@@ -13,7 +13,7 @@ export function Login(){
                          <input className="input-password" type="password" placeholder="Password" />
                          <button>Login</button>
                     </form>
-                    <a className="register_link" href=""><p>Não tem uma conta? Clique aqui e cadastre-se</p></a>
+                    <a className="register_link" href="/cadastro"><p>Não tem uma conta? Clique aqui e cadastre-se</p></a>
                </div>
               
           </div>
