@@ -33,8 +33,36 @@ const ContactController = {
           
      },
 
-     showContactInfos: (req, res)=>{
+     showContactInfos: async (req, res)=>{
+          try {
+               
+               const {id} = req.params;
 
+               const contact = await Contact.findByPk(id);
+
+               console.log(contact);
+
+               if(!contact){
+                    return res.status(404).json({error: true, message: "Nenhum contato encontrado"});
+               }
+
+               return res.status(200).json({data: contact});
+
+          } catch (error) {
+               
+               
+               if (error.name === "SequelizeConnectionRefusedError"){
+                    return res.status(500).json({error: true, message: "Sistema indisponível, tente novamente mais tarde!"})
+               }
+            
+               if (error.name === "SequelizeUniqueConstraintError"){
+                    return res.status(400).json(error.parent.sqlMessage);
+               }
+            
+               if (error.name === "SequelizeValidationError"){
+                    return res.status(400).json({error: true, message: `${error.errors[0].type} at ${error.errors[0].path}`})
+               }
+          }
      },
 
      storeContact: async (req, res)=>{
