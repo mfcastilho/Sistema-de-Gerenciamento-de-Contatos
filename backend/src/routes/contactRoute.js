@@ -10,7 +10,4 @@ router.put("/api/v1/gerenciamento-contatos/contato/:id/editar", ContactControlle
 router.delete("/api/v1/gerenciamento-contatos/contato/:id/excluir", ContactController.deleteContact);
 
 
-
-
-
 module.exports = router;
