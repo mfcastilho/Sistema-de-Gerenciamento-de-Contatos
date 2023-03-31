@@ -57,17 +57,18 @@ form input{
 
 form button{
      height: 2.8rem;
-     width: 50%;
+     width: 80%;
      margin: 2rem auto;
      border-radius: 2rem;
      border:none;
 
-     background-color: orange;
+     background-color: rgb(161, 160, 157);
      color: #FFF;
 
      font-size: 1.4rem;
+     font-weight: bold;
 
-     transition: .3s all;
+     transition: .6s all;
 }
 
 form button:hover{
