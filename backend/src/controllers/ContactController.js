@@ -112,8 +112,47 @@ const ContactController = {
 
      },
 
-     editContact: (req, res)=>{
+     editContact: async (req, res)=>{
+          try {
 
+               const {name, tel, email} = req.body;
+               const {id} = req.params;
+
+               const verifyIfContactExists = await Contact.findByPk(id);
+
+               if(!verifyIfContactExists){
+                    return res.status(400).json({error:true, message: "Contato não está cadastrado e por isso não pode ser editado"});
+               }
+
+               await Contact.update({
+                    name,
+                    tel,
+                    email
+               },
+               {
+                    where:{
+                        id: id
+                    }
+               });
+
+               const contact = await Contact.findByPk(id);
+
+               return res.status(200).json({data: contact});
+               
+          } catch (error) {
+               
+               if (error.name === "SequelizeConnectionRefusedError"){
+                    return res.status(500).json({error: true, message: "Sistema indisponível, tente novamente mais tarde!"})
+               }
+            
+               if (error.name === "SequelizeUniqueConstraintError"){
+                    return res.status(400).json(error.parent.sqlMessage);
+               }
+            
+               if (error.name === "SequelizeValidationError"){
+                    return res.status(400).json({error: true, message: `${error.errors[0].type} at ${error.errors[0].path}`})
+               }
+          }
      },
 
      deleteContact: (req, res)=>{
