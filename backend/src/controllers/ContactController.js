@@ -44,6 +44,8 @@ const ContactController = {
                
                const {id} = req.params;
 
+               console.log("ID:"+id)
+
                const contact = await Contact.findByPk(id);
 
                console.log(contact);
