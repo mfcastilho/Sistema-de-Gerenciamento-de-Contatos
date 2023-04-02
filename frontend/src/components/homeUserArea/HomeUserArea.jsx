@@ -44,7 +44,7 @@ function HomeUserArea(){
 
                const resp = await axios.get(`${baserURL}/api/v1/gerenciamento-contatos/${user.id}/contatos`);
                const contacts = resp.data.data;
-               // console.log(contacts);
+            
                navigate(`/area-do-cliente/${user.id}/contatos`, {state: {contacts}});             
                
           } catch (error) {
@@ -61,12 +61,13 @@ function HomeUserArea(){
                     <div className="welcome">Seja bem vindo, {user.name}!</div>
                </div>
                <div className="buttons-user-area-container">
-                    <form className="buttons-form"  onSubmit={goToNewContactForm} >
-                         <button className="contact-buttons add-new-contact-button">Adicionar novo contato</button>
+
+                    <form className="buttons-form">
+                         <button onClick={goToNewContactForm}  className="contact-buttons add-new-contact-button">Adicionar novo contato</button>
                     </form>
 
-                    <form className="buttons-form" onSubmit={getAllUserContacts} >
-                         <button className="contact-buttons see-all-contacts-button">Ver todos os contatos</button>
+                    <form className="buttons-form" >
+                         <button onClick={getAllUserContacts} className="contact-buttons see-all-contacts-button">Ver todos os contatos</button>
                     </form>
                     
                </div>

@@ -1,0 +1,22 @@
+
+
+.delete-button-form{
+     margin-top: 0 ;
+     margin-bottom: 0;
+}
+
+.btn{
+     margin: 0!important;
+     height: 25px;
+     width: 46px;
+}
+
+.btn-danger{
+     margin: 0!important;
+}
+
+.buttons-table-box{
+     display: flex;
+     align-items: center;
+     justify-content: flex-start;
+}
