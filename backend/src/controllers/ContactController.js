@@ -6,8 +6,14 @@ const ContactController = {
 
      showAllContacts: async (req, res)=>{
 
+          const {id} = req.params;
+
           try {
-               const contacts = await Contact.findAll();
+               const contacts = await Contact.findAll({
+                    where:{userId:id}
+               });
+
+               console.log(contacts)
 
                if(!contacts){
                     return res.status(404).json({error: true, message: "Nenhum contato encontrado"});
