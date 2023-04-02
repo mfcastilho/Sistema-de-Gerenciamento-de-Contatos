@@ -1,0 +1,13 @@
+
+strong, p, span{
+     font-size: 1.6rem;
+}
+.user-contact-container{
+     padding: 0 6rem;
+}
+
+.contac-infos-box{
+     display: flex;
+     flex-direction: column;
+     
+}
