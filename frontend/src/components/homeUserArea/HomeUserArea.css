@@ -1,0 +1,42 @@
+
+
+.home-user-area-container{
+     width: 100%;
+     max-width: 1366px;
+     font-family: 'Roboto', sans-serif;
+
+     padding: 4rem 10rem;
+}
+
+h2{
+     text-align: center;
+     margin-bottom: 5rem;
+}
+
+.welcome{
+     font-size: 1.6rem;
+}
+.buttons-user-area-container{
+     margin-top: 5rem;
+     width: 100%;
+     display: flex;
+     justify-content: center;
+     gap: 5rem;
+}
+
+.contact-buttons{
+     width:20%;
+     height:10vh;
+     border-radius: 1rem;
+     border: none;
+     background-color: rgba(0, 0, 0, 0.3);
+     color: #FFF;
+     font-size: 1.5rem;
+
+     transition: .4s ease-in-out;
+}
+
+.contact-buttons:hover{
+     background-color: #628010;
+     cursor: pointer;
+}
