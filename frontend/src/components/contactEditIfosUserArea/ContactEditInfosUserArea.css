@@ -1,0 +1,66 @@
+.user-edit-contact-container{
+     width: 100%;
+     max-width: 1366px;
+     padding: 0 6rem;
+     display: flex;
+     justify-content: center;
+}
+
+.user-contact-box{
+     width: 30%;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+
+     border: 1px solid black;
+     border-radius: 1rem;
+
+     margin-top: 10rem;
+}
+
+.user-contact-edit-form{
+     width: 100%;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     flex-direction: column;
+}
+
+.wrapper-elements{
+     display: flex;
+     flex-direction: column;
+     width: 80%;
+     margin-bottom: 1rem;
+}
+
+
+.label-user-contact-infos-edit{
+     font-size: 1.4rem;
+}
+.input-user-contact-infos-edit{
+     height: 2.4rem;
+     font-size: 1.4rem;
+     padding-left: .5rem;
+}
+
+.edit-button{
+     height: 2.8rem;
+     width: 80%;
+     
+     border-radius: 2rem;
+     border: none;
+
+     display: flex;
+     justify-content: center;
+     align-items: center;
+
+     background-color: rgb(161, 160, 157);
+     color: #FFF;
+
+     font-size: 1.4rem;
+
+     transition: .3s all;
+     margin-bottom: 2rem;
+}
+
+

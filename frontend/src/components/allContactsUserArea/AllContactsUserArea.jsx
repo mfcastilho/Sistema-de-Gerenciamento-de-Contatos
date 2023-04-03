@@ -11,26 +11,37 @@ function AllContactsUserArea(){
     const contacts = location.state.contacts;
     const navigate = useNavigate();
 
-    const baserURL = "http://localhost:5000";
+    const [userContact, setUserContact] = useState("");
+
+    const baseURL = "http://localhost:5000";
 
     async function getContacInfos(e){
         e.preventDefault();
         const contactId = e.target.dataset.id;
     
         try {
-            const resp = await axios.get(`${baserURL}/api/v1/gerenciamento-contatos/contato/${contactId}`);
+            const resp = await axios.get(`${baseURL}/api/v1/gerenciamento-contatos/contato/${contactId}`);
             console.log(resp.data.data.name);
-            const contact = resp.data.data
+            const contact = resp.data.data;
+            setUserContact(contact);
             navigate(`/area-do-cliente/${user.id}/contato/${contactId}`, {state: {contact}});
         } catch (error) {
             console.log(error.response.data.message);
         }
     }
+
+    function goToStoreContactInfosPage(e){
+        e.preventDefault();
+        const contact = userContact;
+
+        navigate(`/area-do-cliente/${user.id}/contato/editar`, {state: {contact}});
+
+    }
      
 
      return(
         <div>
-            
+            <h2>Todos os contatos de {user.name}</h2>
             <table className="table">
                 <thead className="thead-light">
                     <tr>
@@ -55,7 +66,7 @@ function AllContactsUserArea(){
                                 </form>
 
                                 <form>
-                                    <button href="" className="btn btn-success" data-id={contact.id}>Editar</button>
+                                    <button href="" className="btn btn-success" data-id={contact.id} onClick={goToStoreContactInfosPage}>Editar</button>
                                 </form>
 
                                 <form>

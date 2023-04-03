@@ -54,13 +54,13 @@ export function Login(){
           <div className="container">
                <div className="login-container">
                     <h2>Login</h2>
-                    <form onSubmit={handleSubmit} >
-                         <input className="input-email" name="email" type="text" placeholder="Email" value={email} onChange={(e)=> setEmail(e.target.value)} />
-                         <input className="input-password" name="password" type="password" placeholder="Password" value={password} onChange={(e)=> setPassword(e.target.value)}/>
+                    <form className="login-form" onSubmit={handleSubmit} >
+                         <input className="login-input-email" name="email" type="text" placeholder="Email" value={email} onChange={(e)=> setEmail(e.target.value)} />
+                         <input className="login-input-password" name="password" type="password" placeholder="Password" value={password} onChange={(e)=> setPassword(e.target.value)}/>
                          {error && <p className="error">{error}</p>}
-                         <button type="submit" onClick={()=>{}}>Login</button>
+                         <button className="login-button" type="submit" onClick={()=>{}}>Login</button>
                     </form>
-                    <a className="register_link" href="/cadastro" ><p>Não tem uma conta? Clique aqui e cadastre-se</p></a>
+                    <a className="register_link" href="/cadastro" ><p className="register-link-paragraph">Não tem uma conta? Clique aqui e cadastre-se</p></a>
                </div>
               
           </div>

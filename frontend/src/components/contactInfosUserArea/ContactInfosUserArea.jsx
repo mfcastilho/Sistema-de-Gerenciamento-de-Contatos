@@ -13,7 +13,7 @@ function ContactInfosUserArea(){
      const contact = location.state.contact;
      return(
           <div className="user-contact-container">
-               <h2>Informações do contato da {user.name}</h2>
+               <h2>Informações do contato de {user.name}</h2>
                <div className="contac-infos-box">
                     <div><strong>Nome: </strong><span>{contact.name}</span></div>
                     <div><strong>Telefone: </strong><span>{contact.tel}</span></div>
