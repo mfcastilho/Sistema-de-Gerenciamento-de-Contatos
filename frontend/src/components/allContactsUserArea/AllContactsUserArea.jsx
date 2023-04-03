@@ -24,18 +24,25 @@ function AllContactsUserArea(){
             console.log(resp.data.data.name);
             const contact = resp.data.data;
             setUserContact(contact);
+            
             navigate(`/area-do-cliente/${user.id}/contato/${contactId}`, {state: {contact}});
         } catch (error) {
             console.log(error.response.data.message);
         }
     }
 
-    function goToStoreContactInfosPage(e){
+    async function goToStoreContactInfosPage(e){
         e.preventDefault();
-        const contact = userContact;
+        const contactId = e.target.dataset.id;
 
-        navigate(`/area-do-cliente/${user.id}/contato/editar`, {state: {contact}});
-
+        try {
+            const resp = await axios.get(`${baseURL}/api/v1/gerenciamento-contatos/contato/${contactId}`);
+            const contact = resp.data.data;
+            setUserContact(contact);
+            navigate(`/area-do-cliente/${user.id}/contato/editar`, {state: {contact}});
+        } catch (error) {
+            console.log(error.response.data.message);
+        }
     }
      
 
