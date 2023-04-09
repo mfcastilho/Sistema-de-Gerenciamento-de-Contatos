@@ -167,6 +167,7 @@ const ContactController = {
           try {
 
                const {id} = req.params;
+               console.log(id)
                const contact = await Contact.findByPk(id);
 
                if(!contact){

@@ -13,9 +13,9 @@ function ContactEditInfosUserArea(){
     const navigate = useNavigate();
 
 
-    const [name, setName] = useState("");
-    const [tel, setTel] = useState("");
-    const [email, setEmail] = useState("");
+    const [name, setName] = useState(contact.name);
+    const [tel, setTel] = useState(contact.tel);
+    const [email, setEmail] = useState(contact.email);
 
     async function updateUserContact(e){
         e.preventDefault();

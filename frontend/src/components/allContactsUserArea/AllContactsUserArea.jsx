@@ -44,7 +44,37 @@ function AllContactsUserArea(){
             console.log(error.response.data.message);
         }
     }
+
+    async function deleteUserContact(e){
+        e.preventDefault();
+        const contactId = e.target.dataset.id;
+
+        try {
+            const result = await Swal.fire({
+                title: 'Deseja realmente excluir o contato?',
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: 'Sim',
+                denyButtonText: `Não`,
+            })
+               
+            if (result.isConfirmed) {
+                const resp = await axios.delete(`${baseURL}/api/v1/gerenciamento-contatos/contato/${contactId}/excluir`);
+                console.log(resp.data.message);    
+                Swal.fire('Contato excluído com sucesso', '', 'success');
+                navigate(`/area-do-cliente`)
+            } else if (result.isDenied) {
+                Swal.fire('Changes are not saved', '', 'info')
+            }
+        } catch (error) {
+            console.log(error.response.data.message);
+        }
+        
+         
+        
+    }
      
+    
 
      return(
         <div>
@@ -77,7 +107,7 @@ function AllContactsUserArea(){
                                 </form>
 
                                 <form>
-                                    <button className="btn btn-danger" data-id={contact.id}>Excluir</button>
+                                    <button className="btn btn-danger" data-id={contact.id} onClick={deleteUserContact}>Excluir</button>
                                 </form>
 
                             </td>
