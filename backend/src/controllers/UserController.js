@@ -93,6 +93,8 @@ const UserController = {
                password: hashPassword
           } 
 
+          console.log(newUser);
+
           const user = await User.create(newUser);
 
           if(!user){
