@@ -79,6 +79,8 @@ const ContactController = {
 
                const {name, tel, email, userId} = req.body;
 
+               console.log(name)
+
                const verifyIfContactExists = await Contact.findOne({
                     where:{
                          [Op.or]:[{name},{email}]
