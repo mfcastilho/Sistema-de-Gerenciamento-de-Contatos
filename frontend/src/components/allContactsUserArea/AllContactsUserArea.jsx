@@ -61,10 +61,26 @@ function AllContactsUserArea(){
             if (result.isConfirmed) {
                 const resp = await axios.delete(`${baseURL}/api/v1/gerenciamento-contatos/contato/${contactId}/excluir`);
                 console.log(resp.data.message);    
-                Swal.fire('Contato excluído com sucesso', '', 'success');
-                navigate(`/area-do-cliente`)
+                // Swal.fire('Contato excluído com sucesso!', '', 'success');
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Contato excluído com sucesso!',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+
+                try {
+                    const resp = await axios.get(`${baseURL}/api/v1/gerenciamento-contatos/${user.id}/contatos`);
+                    const contacts = resp.data.data;
+                    navigate(`/area-do-cliente/${user.id}/contatos`, {state: {contacts}});
+                } catch (error) {
+                    console.log(error.response.data.message);
+                }
+
+                // navigate(`/area-do-cliente`)
             } else if (result.isDenied) {
-                Swal.fire('Changes are not saved', '', 'info')
+                Swal.fire('O contato não foi excluído', '', 'info')
             }
         } catch (error) {
             console.log(error.response.data.message);
@@ -74,10 +90,12 @@ function AllContactsUserArea(){
         
     }
      
-    
+    function backButton(){
+        navigate(`/area-do-cliente`);
+    }
 
      return(
-        <div>
+        <div className="all-contacts-user-area-container">
             <h2>Todos os contatos de {user.name}</h2>
             <table className="table">
                 <thead className="thead-light">
@@ -116,7 +134,7 @@ function AllContactsUserArea(){
                     
                 </tbody>
             </table>
-
+            <button className="back-button" onClick={backButton}>Voltar</button>        
         </div>
      )
 }

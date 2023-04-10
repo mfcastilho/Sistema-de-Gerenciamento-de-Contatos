@@ -3,6 +3,11 @@ import "./RegisterForm.css";
 
 
 export function RegisterForm() {
+
+     
+
+
+
      return (
          <div className="container">
                <div className="register-container">
