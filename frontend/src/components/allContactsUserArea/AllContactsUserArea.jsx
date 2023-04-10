@@ -108,29 +108,34 @@ function AllContactsUserArea(){
                     </tr>
                 </thead>
                 <tbody>
-                    {contacts.map((contact)=>{
-                        return (<tr key={contact.id}>
-                            <th scope="row">{contact.id}</th>
-                            <td>{contact.name}</td>
-                            <td>{contact.tel}</td>
-                            <td>{contact.email}</td>
-                            <td className="buttons-table-box">
-                               
-                                <form >
-                                    <button className="btn btn-primary" data-id={contact.id} onClick={getContacInfos}>Abrir</button>
-                                </form>
+                    
+                    {contacts.length === 0 ? (
+                        <h4>Não existem contatos cadastrados...</h4>
+                    ) : (
+                        contacts.map((contact)=>{
+                            return (<tr key={contact.id}>
+                                <th scope="row">{contact.id}</th>
+                                <td>{contact.name}</td>
+                                <td>{contact.tel}</td>
+                                <td>{contact.email}</td>
+                                <td className="buttons-table-box">
+                                
+                                    <form >
+                                        <button className="btn btn-primary" data-id={contact.id} onClick={getContacInfos}>Abrir</button>
+                                    </form>
 
-                                <form>
-                                    <button href="" className="btn btn-success" data-id={contact.id} onClick={goToStoreContactInfosPage}>Editar</button>
-                                </form>
+                                    <form>
+                                        <button href="" className="btn btn-success" data-id={contact.id} onClick={goToStoreContactInfosPage}>Editar</button>
+                                    </form>
 
-                                <form>
-                                    <button className="btn btn-danger" data-id={contact.id} onClick={deleteUserContact}>Excluir</button>
-                                </form>
+                                    <form>
+                                        <button className="btn btn-danger" data-id={contact.id} onClick={deleteUserContact}>Excluir</button>
+                                    </form>
 
-                            </td>
-                        </tr>)
-                    })}
+                                </td>
+                            </tr>)
+                        })
+                    )}
                     
                 </tbody>
             </table>
