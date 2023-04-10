@@ -1,0 +1,81 @@
+
+
+.add-new-contact-container{
+     display: flex;
+     justify-content: center;
+     font-family: 'Roboto', sans-serif;
+}
+
+h2{
+     text-align: center;
+     font-size: 2.6rem;
+
+     margin: 2rem 0 1rem 0;
+     color: #456681;
+}
+
+
+.add-new-contact-form-box{
+     display: flex;
+     flex-direction: column;
+     
+
+     border: 1px solid #456681;
+     border-radius: .7rem;
+     width: 30%;
+
+     margin: 10rem 0;
+     padding: 1.5rem 0;
+}
+
+.add-new-contact-form{
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+}
+
+.hugging-elements{
+     width: 100%;
+     display: flex;
+     align-items: center;
+     flex-direction: column;
+}
+
+.new-contact-label{
+     font-size: 1.4rem;
+     align-self: flex-start;
+     margin-left: 10%;
+}
+.new-contact-input{
+     height: 2.4rem;
+     width: 80%;
+     padding-left: 1rem;
+     display: flex;
+     margin-bottom: 1rem;
+     font-size: 1.4rem;
+     /* outline-color: #456681; */
+}
+
+.add-new-contact-button{
+     height: 2.8rem;
+     width: 80%;
+     border-radius: 2rem;
+     border:none;
+     display: flex;
+     justify-content: center;
+     background-color: rgb(161, 160, 157);
+     color: #FFF;
+     display: flex;
+     align-items: center;
+
+     font-size: 1.4rem;
+
+     transition: .3s all;
+
+     margin-bottom: 2rem;
+}
+
+.add-new-contact-button:hover{
+     background-color: rgb(235, 156, 11);
+     cursor: pointer;
+}

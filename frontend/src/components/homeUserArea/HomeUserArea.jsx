@@ -34,7 +34,7 @@ function HomeUserArea(){
 
 
      function goToNewContactForm(){
-          navigate("/cadastrar-contato");
+          navigate(`/area-do-cliente/${user.id}/cadastrar-contato`);
      }
 
      async function getAllUserContacts(e){
